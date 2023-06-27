@@ -156,29 +156,7 @@ public class PatientService : IPatientService
             }
 
             //***************Hosted at S3 Bucket*****************//
-            // Configure your AWS credentials
-            var awsCredentials = new BasicAWSCredentials("AKIA3IDRZH6YSZ63HNOK", "rU6L/gRr/1+PpQ+ydw1iHcn8XX52l3kgFiZnDsOC");
-
-            // Configure the AWS region
-            var region = RegionEndpoint.APSouth1; // Change it to your desired region
-
-            // Configure the S3 client
-            var s3Client = new AmazonS3Client(awsCredentials, region);
-
-            //2.Upload a file to a bucket:
-            var bucketName = "lambdabucketmumbai123";
-            var filePath = "D:/RND/ListBucketsExample/files/text.txt";
-            var key = "text.txt"; // The key under which to store the file in the bucket
-
-            using (var fileStream = new FileStream(filePath, FileMode.Open))
-            {
-                s3Client.PutObjectAsync(new PutObjectRequest
-                {
-                    BucketName = bucketName,
-                    Key = key,
-                    InputStream = fileStream
-                });
-            }
+            
 
             //************Patient DICOM file Upload************//
             path = _appSettings.DICOM_UploadPath;//Path.Combine(Directory.GetCurrentDirectory(), "Uploads");

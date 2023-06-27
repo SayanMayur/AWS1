@@ -54,29 +54,7 @@ public class PatientsController : ControllerBase
         try
         {
             //***************Hosted at S3 Bucket*****************//
-            // Configure your AWS credentials
-            var awsCredentials = new BasicAWSCredentials("AKIA3IDRZH6YSZ63HNOK", "rU6L/gRr/1+PpQ+ydw1iHcn8XX52l3kgFiZnDsOC");
-
-            // Configure the AWS region
-            var region = RegionEndpoint.APSouth1; // Change it to your desired region
-
-            // Configure the S3 client
-            var s3Client = new AmazonS3Client(awsCredentials, region);
-
-            //2.Upload a file to a bucket:
-            var bucketName = "lambdabucketmumbai123";
-            var filePath = "E:/MTR Development/BISWAJIT__MALIK-24-Oct-22/b.dcm";
-            var key = "b.dcm"; // The key under which to store the file in the bucket
-
-            using (var fileStream = new FileStream(filePath, FileMode.Open))
-            {
-                await s3Client.PutObjectAsync(new PutObjectRequest
-                {
-                    BucketName = bucketName,
-                    Key = key,
-                    InputStream = fileStream
-                }).ConfigureAwait(true);
-            }
+            
 
 
             if (postedFiles.action_tag == null)
